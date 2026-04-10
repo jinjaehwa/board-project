@@ -12,7 +12,7 @@ def load_user(user_id):
 @app.route('/')
 def index():
     posts = Post.query.order_by(Post.id.desc()).all()
-    return render_template('index.html', posts=posts)
+    return render_template('post/index.html', posts=posts)
 
 # 회원가입
 @app.route('/register', methods=['GET', 'POST'])
@@ -24,7 +24,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
-    return render_template('register.html')
+    return render_template('auth/register.html')
 
 # 로그인
 @app.route('/login', methods=['GET', 'POST'])
@@ -35,7 +35,7 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         flash('아이디 또는 비밀번호가 틀렸어요')
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 # 로그아웃
 @app.route('/logout')
@@ -53,13 +53,13 @@ def write():
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('write.html')
+    return render_template('post/write.html')
 
 # 글 상세보기
 @app.route('/post/<int:post_id>')
 def post_detail(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post_detail.html', post=post)
+    return render_template('post/post_detail.html', post=post)
 
 # 글 수정
 @app.route('/edit/<int:post_id>', methods=['GET', 'POST'])
@@ -73,7 +73,7 @@ def edit(post_id):
         post.content = request.form['content']
         db.session.commit()
         return redirect(url_for('post_detail', post_id=post.id))
-    return render_template('edit.html', post=post)
+    return render_template('post/edit.html', post=post)
 
 # 글 삭제
 @app.route('/delete/<int:post_id>')
