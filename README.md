@@ -19,11 +19,28 @@
 ## 파일 구조
 
 board_project/
-├── app.py         # Flask 앱 설정
-├── models.py      # DB 모델
-├── routes.py      # 페이지 라우팅
-├── templates/     # HTML 파일들
-└── static/        # CSS, JS 파일들
+├── frontend/
+│   ├── templates/
+│   │   ├── base.html          # 공통 레이아웃
+│   │   ├── auth/
+│   │   │   ├── login.html     # 로그인 페이지
+│   │   │   └── register.html  # 회원가입 페이지
+│   │   └── post/
+│   │       ├── index.html     # 글 목록 페이지
+│   │       ├── write.html     # 글쓰기 페이지
+│   │       ├── post_detail.html # 글 상세보기 페이지
+│   │       └── edit.html      # 글 수정 페이지
+│   └── static/
+│       ├── css/
+│       │   └── style.css      # 스타일시트
+│       └── js/
+│           └── main.js        # 자바스크립트
+├── backend/
+│   ├── app.py                 # Flask 앱 설정
+│   ├── models.py              # DB 모델
+│   └── routes.py              # 페이지 라우팅
+├── .gitignore
+└── README.md
 
 ## 실행 방법
 
